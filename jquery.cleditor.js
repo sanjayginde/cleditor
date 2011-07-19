@@ -7,6 +7,12 @@
  Dual licensed under the MIT or GPL Version 2 licenses.
 */
 
+/**
+ * Additions by Sanjay Ginde (sanjayginde @ github):
+ *  - Updated the editor 'change' event to be dispatched on 'keyup' in addition to 'blur'
+ *  - added 'text', 'html', and 'wordcount' methods to cleditor object 
+ */
+
 // ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 // @output_file_name jquery.cleditor.min.js
@@ -319,6 +325,9 @@
     ["hidePopups", hidePopups],
     ["sourceMode", sourceMode, true],
     ["refresh", refresh],
+    ["text", text, true],
+    ["html", html, true],
+    ["wordcount", wordcount, true],
     ["select", select],
     ["selectedHTML", selectedHTML, true],
     ["selectedText", selectedText, true],
@@ -983,6 +992,22 @@
   function restoreRange(editor) {
     if (ie && editor.range)
       editor.range[0].select();
+  }
+
+  // text - returns text in the editor (no markup)
+  function text(editor) {
+    return $(editor.doc.body).text();
+  }
+
+  // html - returns HTML in the editor
+  function html(editor) {
+    return $(editor.doc.body).html();
+  }
+
+  // wordcount - returns a (simple) word count within the text (not HTML) of the edito
+  function wordcount(editor) {
+    var words = editor.text().match(/\w+/g);
+    return (!!words) ? words.length : 0;
   }
 
   // select - selects all the text in either the textarea or iframe
