@@ -10,7 +10,7 @@
 /**
  * Additions by Sanjay Ginde (sanjayginde @ github):
  *  - Updated the editor 'change' event to be dispatched on 'keyup' in addition to 'blur'
- *  - added 'text', 'html', 'content', and 'wordcount' methods to cleditor object 
+ *  - added 'text', 'html', and 'wordcount' methods to cleditor object 
  */
 
 // ==ClosureCompiler==
@@ -327,7 +327,6 @@
     ["refresh", refresh],
     ["text", text, true],
     ["html", html, true],
-    ["content", content, true],
     ["wordcount", wordcount, true],
     ["select", select],
     ["selectedHTML", selectedHTML, true],
@@ -1005,10 +1004,6 @@
     return $(editor.doc.body).html();
   }
 
-  // content - alias for 'html' method
-  function content(editor) {
-    return editor.html();
-  }
   // wordcount - returns a (simple) word count within the text (not HTML) of the edito
   function wordcount(editor) {
     var words = editor.text().match(/\w+/g);
